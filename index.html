@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>রুহির জন্য</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: #ffdde1;
+            text-align: center;
+            font-family: 'Arial', sans-serif;
+        }
+        .heart {
+            position: absolute;
+            color: red;
+            font-size: 28px;
+            animation: fall linear infinite;
+        }
+        @keyframes fall {
+            0% { transform: translateY(-100vh); opacity: 1; }
+            100% { transform: translateY(100vh); opacity: 0; }
+        }
+        .container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .button {
+            background-color: #ff6f61;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            font-size: 22px;
+            cursor: pointer;
+            border-radius: 10px;
+        }
+        .hidden {
+            display: none;
+        }
+        .poem-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: url('https://www.transparenttextures.com/patterns/aged-paper.png');
+            padding: 20px;
+            font-size: 24px;
+            width: 60%;
+            line-height: 1.6;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
+            border: 10px solid #8B4513;
+            border-radius: 15px;
+        }
+        .petals {
+            position: absolute;
+            color: pink;
+            font-size: 48px;
+            animation: petals-fall linear infinite;
+        }
+        @keyframes petals-fall {
+            0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <button class="button" onclick="startTransition()">আমাকে ক্লিক করো</button>
+    </div>
+    <div class="poem-container hidden" id="poem">
+        <h2>রুহির জন্য</h2>
+        <p>
+            রুহি, তুমি আমার হৃদয়ের আলো,<br>
+            তোমার প্রেমে জীবন হয়ে ওঠে ভালো।<br><br>
+            রুহি, তুমি আকাশের তারা,<br>
+            তোমার ছোঁয়ায় দূর হয় অন্ধকার।<br><br>
+            রুহি, তুমি শক্তি, তুমি আশা,<br>
+            বৃষ্টি হলেও তুমি দাও ভালোবাসা।<br><br>
+            রুহি, তুমি আমার আত্মার সাথী,<br>
+            তোমার ছায়ায় মুছে যায় ব্যাথা ও ক্লান্তি।<br><br>
+            রুহি, প্রতিদিন তুমি অনুপ্রেরণা দাও,<br>
+            তোমার ভালোবাসায় জীবন রঙিন হয়ে যাও।<br><br>
+            রুহি, নরম বাতাস, আগুনের শিখা,<br>
+            তোমার পাশে থাকলেই জীবন হয় মিষ্টি।<br><br>
+            রুহি, তুমি আমার হৃদয়, আমার জগৎ,<br>
+            তোমার সাথে জীবন উৎসবময় প্রতিটা ক্ষণ।<br>
+        </p>
+    </div>
+    <script>
+        function createHeart() {
+            const heart = document.createElement("div");
+            heart.classList.add("heart");
+            heart.innerHTML = "❤️";
+            
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.animationDuration = (Math.random() * 1 + 2) + "s";
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 5000);
+        }
+        setInterval(createHeart, 300);
+
+        function startTransition() {
+            document.querySelector('.container').style.display = 'none';
+            createPetalEffect();
+            setTimeout(() => {
+                document.getElementById('poem').classList.remove('hidden');
+            }, 2000);
+        }
+
+        function createPetalEffect() {
+            for (let i = 0; i < 50; i++) {
+                setTimeout(() => {
+                    const petal = document.createElement("div");
+                    petal.classList.add("petals");
+                    petal.innerHTML = "🌹";
+                    petal.style.left = Math.random() * 100 + "vw";
+                    petal.style.animationDuration = (Math.random() * 3 + 2) + "s";
+                    document.body.appendChild(petal);
+                    setTimeout(() => petal.remove(), 5000);
+                }, i * 100);
+            }
+        }
+    </script>
+</body>
+</html>
